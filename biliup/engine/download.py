@@ -80,7 +80,7 @@ class DownloadBase(ABC):
         raise NotImplementedError()
 
     def download(self):
-        logger.debug(f"{self.plugin_msg}: Start downloading {self.raw_stream_url}")
+        logger.info(f"{self.plugin_msg}: Start downloading {self.raw_stream_url}")
         if self.is_download:
             if not shutil.which("ffmpeg"):
                 logger.error("未安装 FFMpeg 或不存在于 PATH 内")
@@ -464,7 +464,7 @@ def stream_gears_download(url, headers, file_name, segment_time=None, file_size=
     segment = Segment()
     if segment_time:
         seg_time = segment_time.split(':')
-        print(int(seg_time[0]) * 60 * 60 + int(seg_time[1]) * 60 + int(seg_time[2]))
+        # print(int(seg_time[0]) * 60 * 60 + int(seg_time[1]) * 60 + int(seg_time[2]))
         segment.time = int(seg_time[0]) * 60 * 60 + int(seg_time[1]) * 60 + int(seg_time[2])
     if file_size:
         segment.size = file_size
